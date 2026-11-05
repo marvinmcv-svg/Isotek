@@ -34,12 +34,13 @@
 color.ink        #0E0F11   (switch-room black; text on paper, dark sections)
 color.ink-2      #17191C   (raised dark surface)
 color.steel-900  #2A2D31
-color.steel-600  #5B6067   (secondary text on paper — 6.3:1 on paper)
+color.steel-600  #5B6067   (secondary text on paper — 5.6:1)
 color.steel-300  #B9BCC0   (hairlines on dark)
 color.steel-150  #D9D7D2   (hairlines on paper)
 color.paper      #F2F0EC   (main light surface)
 color.white      #FFFFFF   (cards / product shots)
-color.signal     #E41E18   (logo red — live circuit, primary CTA, focus)
+color.signal     #E41E18   (logo red — fills, large text, focus; 4.1:1 so not for small text)
+color.signal-bright #FF4A3D (small red text on ink — 5.8:1)
 color.signal-ink #B8140F   (red for small text on paper — 6.0:1)
 color.copper     #C2703D   (rare, for PROTOS copper/product details only)
 

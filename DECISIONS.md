@@ -49,3 +49,18 @@ Why it wins:
 - **Images:** originals live in `assets/raw`; the site serves processed copies from `site/public/media` through `next/image` (AVIF/WebP, responsive sizes, lazy below the fold).
 - **Team section:** the current home page shows two conflicting team lists. I used the LATAM management list (it has titles that match the 2025 "ISOTEK ahora es ISOTEK LATAM" announcement and has email links). No photos exist for most of that list, so the team is presented typographically; flagged for client confirmation.
 - **"15 años":** the home page says "15 años de trayectoria", but the company was founded in 2015. The FAQ clarifies the 15+ years refers to the *team's* experience. The new site says "desde 2015" for the company and "más de 15 años de experiencia del equipo" only where the FAQ supports it.
+
+## Build and QA decisions (Phases 6–7)
+
+- **Hero sequence in CSS, not GSAP.** The "Energizar" intro runs on load, not on scroll, so CSS keyframes are simpler and work before (and without) JavaScript, with no hydration flash. GSAP ScrollTrigger is kept for the scroll-scrubbed page busbar, and is only downloaded at ≥ 1024 px, where the busbar is visible.
+- **Mobile menu with CSS transitions instead of Motion.** Motion was in the bundle shared by every page; moving the menu to CSS cut main-thread work on mobile (Lighthouse home mobile 83 → 92). Motion remains for the Projects filter's layout animation, where it earns its weight.
+- **Reveal system fails open.** Content is only hidden once JS has added a `js` class; if the observer has not booted after 3 s, the class is removed. Verified with JavaScript disabled: 0 hidden elements.
+- **Image reveals start as a 2 px line**, not fully clipped: Chrome's IntersectionObserver treats a fully clipped target as never intersecting.
+- **Contact form reads `?tema=` after mount** instead of `useSearchParams`, which forced a client-only render and caused a 0.43 layout shift on mobile.
+- **Hyphenation on phones only**, so long Spanish words fit at 360 px without breaking desktop headlines.
+- **Projects header without a photo**: the decorative background was the mobile LCP element and cost ~1 s; the project cards below carry the imagery.
+- **Mono font not preloaded**: small labels can use the fallback font for the first paint, which frees bandwidth for the LCP image.
+- **Redirects return 308** (Next.js's permanent redirect). Search engines treat 308 like 301.
+- **Industry tags on projects are inferences** for the filter (see MISSING_CONTENT #11).
+- **Vision statement softened** (see MISSING_CONTENT); reversible.
+- **No preview deployment yet**: deploying to Vercel publishes the site under the user's account, so per section 3 it waits for approval.

@@ -10,6 +10,7 @@ import { RevealObserver } from '@/components/motion/RevealObserver';
 import { Busbar } from '@/components/motion/Busbar';
 import { WhatsAppFab } from '@/components/ui/WhatsAppFab';
 import { JsonLd } from '@/components/seo/JsonLd';
+import { Analytics } from '@/components/seo/Analytics';
 import { getSettings } from '@/content';
 import { SITE_URL, tr } from '@/lib/site';
 import type { Locale } from '@/content/types';
@@ -82,6 +83,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           <RevealObserver />
         </NextIntlClientProvider>
         <JsonLd data={org} />
+        <Analytics />
       </body>
     </html>
   );

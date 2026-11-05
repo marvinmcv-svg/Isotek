@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import { contactSchema, TOPICS } from '@/lib/contact-schema';
 import { waLink } from '@/lib/site';
+import { track } from '@/components/seo/Analytics';
 
 type Status = 'idle' | 'sending' | 'ok' | 'error' | 'invalid';
 
@@ -38,7 +39,7 @@ export function ContactForm({ email, whatsapp }: { email: string; whatsapp: stri
     try {
       const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(parsed.data) });
       setStatus(res.ok ? 'ok' : 'error');
-      if (res.ok) (e.target as HTMLFormElement).reset();
+      if (res.ok) track('generate_lead', { topic: parsed.data.topic });
     } catch {
       setStatus('error');
     }
