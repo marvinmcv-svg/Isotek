@@ -68,8 +68,11 @@
     font-stretch: 72%;
     letter-spacing: -0.02em;
     text-wrap: balance;
-    hyphens: auto;
     overflow-wrap: break-word;
+  }
+  /* Long Spanish words only need hyphenation on phones */
+  @media (max-width: 639px) {
+    h1, h2, h3, .display { hyphens: auto; }
   }
   p { text-wrap: pretty; }
 }

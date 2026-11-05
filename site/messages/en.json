@@ -53,7 +53,12 @@
     "title1": "One",
     "title2": "supplier.",
     "lead": "From engineering to commissioning. We design, manufacture in Bolivia, install and maintain the electrical and control systems of industrial plants across the region.",
-    "feeders": ["Engineering", "Procurement", "Fabrication", "Commissioning"],
+    "feeders": [
+      "Engineering",
+      "Procurement",
+      "Fabrication",
+      "Commissioning"
+    ],
     "ctaPrimary": "Request a consultation",
     "ctaProjects": "See projects",
     "proofTitle": "Measurable backing",
@@ -86,7 +91,13 @@
     "lead": "ISOTEK LATAM combines exclusive distribution of brands such as Endress+Hauser, SICK, Bühler, WAGO and Alstom with Siemens and Rockwell Automation – CUBIC certification to deliver complete turnkey solutions: from engineering to procurement and commissioning.",
     "mccTitle": "Two MCC lines, matched to your project",
     "processTitle": "How we deliver a project",
-    "process": ["Basic and detailed engineering", "Procurement from certified brands", "In-house fabrication", "Electromechanical installation", "Start-up and commissioning"],
+    "process": [
+      "Basic and detailed engineering",
+      "Procurement from certified brands",
+      "In-house fabrication",
+      "Electromechanical installation",
+      "Start-up and commissioning"
+    ],
     "faqTitle": "Frequently asked questions",
     "consult": "Ask about this service"
   },
@@ -133,12 +144,30 @@
     ],
     "peopleTitle": "Our team at your service",
     "people": [
-      ["100+", "people"],
-      ["30+", "production and assembly engineers"],
-      ["45+", "service engineers"],
-      ["11", "sales engineers in Bolivia, Peru, Paraguay and Argentina"],
-      ["6+", "solutions and design engineers"],
-      ["3", "brand specialists"]
+      [
+        "100+",
+        "people"
+      ],
+      [
+        "30+",
+        "production and assembly engineers"
+      ],
+      [
+        "45+",
+        "service engineers"
+      ],
+      [
+        "11",
+        "sales engineers in Bolivia, Peru, Paraguay and Argentina"
+      ],
+      [
+        "6+",
+        "solutions and design engineers"
+      ],
+      [
+        "3",
+        "brand specialists"
+      ]
     ],
     "missionTitle": "Mission",
     "mission": "To become a strategic partner for our clients, delivering optimal mechatronic and electrical solutions that translate into real gains in quality, reliability and productivity.",
@@ -174,7 +203,12 @@
       "phone": "Phone / WhatsApp",
       "country": "Country",
       "topic": "What is your enquiry about?",
-      "topics": { "service": "Services / project", "product": "Products", "calibration": "Calibration", "other": "Other" },
+      "topics": {
+        "service": "Services / project",
+        "product": "Products",
+        "calibration": "Calibration",
+        "other": "Other"
+      },
       "message": "How can we help?",
       "messageHint": "Briefly describe your need: type of plant, equipment, timeline.",
       "consent": "I agree that ISOTEK LATAM may use this data to answer my enquiry.",
@@ -182,7 +216,7 @@
       "sending": "Sending…",
       "required": "Required",
       "success": "Thank you. We received your enquiry and an engineer will reply shortly.",
-      "error": "We couldn’t send your enquiry right now. Please write to {email} or message us on WhatsApp.",
+      "error": "We couldn’t send your enquiry right now. Please contact us directly:",
       "invalid": "Please check the highlighted fields."
     }
   },

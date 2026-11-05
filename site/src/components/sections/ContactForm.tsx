@@ -114,7 +114,7 @@ export function ContactForm({ email, whatsapp }: { email: string; whatsapp: stri
         {status === 'invalid' && <p role="alert" className="font-semibold text-signal-ink">{t('invalid')}</p>}
         {status === 'error' && (
           <p role="alert" className="text-signal-ink">
-            {t('error', { email })}{' '}
+            {t('error')}{' '}
             <a className="font-semibold underline" href={`mailto:${email}`}>{email}</a> ·{' '}
             <a className="font-semibold underline" href={waLink(whatsapp)} target="_blank" rel="noopener noreferrer">{c('whatsapp')}</a>
           </p>
