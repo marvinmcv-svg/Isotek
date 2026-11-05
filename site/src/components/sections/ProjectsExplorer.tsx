@@ -59,7 +59,7 @@ export function ProjectsExplorer({ projects, industries, locale }: { projects: P
                 exit={reduce ? undefined : { opacity: 0, scale: 0.98 }}
                 transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               >
-                <ProjectCard p={p} locale={locale} index={i} priority={i < 3} />
+                <ProjectCard p={p} locale={locale} index={i} headingLevel={2} />
               </motion.li>
             ))}
           </AnimatePresence>

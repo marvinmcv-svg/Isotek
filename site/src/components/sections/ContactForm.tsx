@@ -1,7 +1,6 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { useSearchParams } from 'next/navigation';
 import { contactSchema, TOPICS } from '@/lib/contact-schema';
 import { waLink } from '@/lib/site';
 
@@ -11,10 +10,15 @@ export function ContactForm({ email, whatsapp }: { email: string; whatsapp: stri
   const t = useTranslations('contact.form');
   const c = useTranslations('common');
   const locale = useLocale();
-  const q = useSearchParams();
-  const tema = q.get('tema') || '';
-  const initialTopic = (TOPICS as readonly string[]).includes(tema) ? tema : 'service';
-  const product = q.get('producto');
+  // Pre-select topic / product from ?tema=…&producto=… after mount (keeps the page static, no layout shift).
+  const [topic, setTopic] = useState<string>('service');
+  const [product, setProduct] = useState('');
+  useEffect(() => {
+    const q = new URLSearchParams(window.location.search);
+    const tema = q.get('tema') || '';
+    if ((TOPICS as readonly string[]).includes(tema)) setTopic(tema);
+    setProduct(q.get('producto') || '');
+  }, []);
   const [status, setStatus] = useState<Status>('idle');
   const [bad, setBad] = useState<string[]>([]);
 
@@ -81,7 +85,7 @@ export function ContactForm({ email, whatsapp }: { email: string; whatsapp: stri
         <div className="mt-3 flex flex-wrap gap-2">
           {TOPICS.map((tp) => (
             <label key={tp} className="mono cursor-pointer border border-steel-150 bg-white px-3 py-2.5 text-steel-600 transition-colors has-checked:border-ink has-checked:bg-ink has-checked:text-white has-focus-visible:outline-2 has-focus-visible:outline-signal">
-              <input type="radio" name="topic" value={tp} defaultChecked={tp === initialTopic} className="sr-only" />
+              <input type="radio" name="topic" value={tp} checked={tp === topic} onChange={() => setTopic(tp)} className="sr-only" />
               {t(`topics.${tp}`)}
             </label>
           ))}
@@ -90,7 +94,7 @@ export function ContactForm({ email, whatsapp }: { email: string; whatsapp: stri
       <div className="sm:col-span-2">
         <label htmlFor="cf-message" className={label}>{t('message')}{req}</label>
         <p id="cf-message-hint" className="text-sm text-steel-600">{t('messageHint')}</p>
-        <textarea id="cf-message" name="message" rows={6} required minLength={10} maxLength={4000} aria-describedby="cf-message-hint" aria-invalid={inv('message')} defaultValue={product ? `${product}: ` : ''} className={field} />
+        <textarea id="cf-message" name="message" rows={6} required minLength={10} maxLength={4000} aria-describedby="cf-message-hint" aria-invalid={inv('message')} key={product} defaultValue={product ? `${product}: ` : ''} className={field} />
       </div>
       {/* Honeypot: hidden from people and assistive tech */}
       <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">

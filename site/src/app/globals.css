@@ -68,6 +68,8 @@
     font-stretch: 72%;
     letter-spacing: -0.02em;
     text-wrap: balance;
+    hyphens: auto;
+    overflow-wrap: break-word;
   }
   p { text-wrap: pretty; }
 }
@@ -142,7 +144,7 @@ html.js [data-reveal-img].is-in { clip-path: inset(0 0 0 0); }
   100% { background: var(--color-signal); border-color: var(--color-signal); box-shadow: 0 0 0 5px rgb(228 30 24 / 0.18); }
 }
 @keyframes pulse-run { from { left: 0; opacity: 1; } 90% { opacity: 1; } to { left: 100%; opacity: 0; } }
-@keyframes rise { from { transform: translateY(40%); opacity: 0.001; } to { transform: none; opacity: 1; } }
+@keyframes rise { from { transform: translateY(30%); } to { transform: none; } }
 @keyframes fade-up { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
 @keyframes photo-on { from { opacity: 0.18; transform: scale(1.06); } to { opacity: 0.5; transform: scale(1); } }
 

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Suspense } from 'react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { SectionNode } from '@/components/ui/SectionNode';
@@ -29,7 +28,7 @@ export default async function Contact({ params }: { params: Promise<{ locale: Lo
             <h1 className="mt-6 text-4xl uppercase">{t('title')}</h1>
             <p className="mt-6 max-w-xl text-lg text-steel-600">{t('lead')}</p>
             <div className="mt-12">
-              <Suspense fallback={null}><ContactForm email={s.email} whatsapp={s.whatsapp} /></Suspense>
+              <ContactForm email={s.email} whatsapp={s.whatsapp} />
             </div>
           </div>
           <aside className="on-dark self-start bg-ink p-8 text-white lg:sticky lg:top-28 lg:col-span-4 lg:col-start-9">

@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
 import { Logo } from '@/components/ui/Logo';
@@ -18,7 +17,6 @@ const NAV = [
 export function Header({ settings }: { settings: SiteSettings }) {
   const t = useTranslations('nav');
   const pathname = usePathname();
-  const reduce = useReducedMotion();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const menuBtn = useRef<HTMLButtonElement>(null);
@@ -93,31 +91,25 @@ export function Header({ settings }: { settings: SiteSettings }) {
         </div>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
+          <div
             id="mobile-nav"
-            className="grid-lines fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-ink lg:hidden"
-            initial={reduce ? false : { clipPath: 'inset(0 0 100% 0)' }}
-            animate={{ clipPath: 'inset(0 0 0% 0)' }}
-            exit={reduce ? undefined : { clipPath: 'inset(0 0 100% 0)' }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            inert={!open}
+            className={`grid-lines fixed inset-x-0 bottom-0 top-16 overflow-y-auto bg-ink transition-[clip-path,visibility] duration-500 ease-out lg:hidden ${open ? 'visible [clip-path:inset(0_0_0_0)]' : 'invisible [clip-path:inset(0_0_100%_0)]'}`}
           >
             <nav aria-label={t('primary')} className="container-x flex min-h-full flex-col pb-28 pt-8">
               <ul className="border-l border-white/15">
                 {[['home', '/'] as const, ...NAV, ['brands', '/marcas'] as const, ['contact', '/contacto'] as const].map(([key, href], i) => (
-                  <motion.li
+                  <li
                     key={key}
-                    initial={reduce ? false : { opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.12 + i * 0.04, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                    style={{ transitionDelay: open ? `${120 + i * 40}ms` : '0ms' }}
+                    className={`transition-[opacity,translate] duration-500 ease-out ${open ? 'translate-x-0 opacity-100' : '-translate-x-3 opacity-0'}`}
                   >
                     <Link href={href} aria-current={active(href) && href !== '/' ? 'page' : undefined} className="group flex items-center gap-4 py-2.5">
                       <span aria-hidden className="h-px w-5 bg-white/30 transition-all group-hover:w-8 group-hover:bg-signal group-aria-[current=page]:bg-signal" />
                       <span className="mono w-8 text-steel-400">{String(i).padStart(2, '0')}</span>
                       <span className="display text-4xl uppercase">{t(key)}</span>
                     </Link>
-                  </motion.li>
+                  </li>
                 ))}
               </ul>
               <div className="mt-auto flex flex-wrap items-center gap-4 pt-10">
@@ -127,9 +119,8 @@ export function Header({ settings }: { settings: SiteSettings }) {
                 </a>
               </div>
             </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+
     </header>
   );
 }

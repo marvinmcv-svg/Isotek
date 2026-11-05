@@ -8,7 +8,7 @@ export function PageHeader({ eyebrow, title, lead, image, children }: { eyebrow:
   return (
     <section className="on-dark relative overflow-hidden bg-ink pb-16 pt-32 text-white lg:pb-24 lg:pt-44">
       {image && (
-        <Image src={image.src} alt="" fill priority sizes="100vw" className="object-cover opacity-30 grayscale-[30%]" />
+        <Image src={image.src} alt="" fill priority quality={50} sizes="100vw" className="object-cover opacity-30 grayscale-[30%]" />
       )}
       <div aria-hidden className="grid-lines absolute inset-0 bg-gradient-to-r from-ink via-ink/85 to-ink/40" />
       <div className="container-x relative">

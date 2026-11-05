@@ -19,7 +19,7 @@ export default async function Projects({ params }: { params: Promise<{ locale: L
   const [t, projects, industries] = await Promise.all([getTranslations('projects'), getProjects(), getIndustries()]);
   return (
     <>
-      <PageHeader eyebrow={t('eyebrow')} title={t('title')} lead={t('lead')} image={projects.find((p) => p.slug.startsWith('alcoenergy'))?.images[0]} />
+      <PageHeader eyebrow={t('eyebrow')} title={t('title')} lead={t('lead')} />
       <section className="bg-paper py-16 lg:py-24">
         <div className="container-x">
           <ProjectsExplorer projects={projects} industries={industries} locale={locale} />

@@ -9,7 +9,8 @@ import { useEffect, useRef } from 'react';
 export function Busbar() {
   const fill = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    if (!fill.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // Busbar is only visible at lg+; don't download GSAP on phones/tablets.
+    if (!fill.current || !window.matchMedia('(min-width: 1024px) and (prefers-reduced-motion: no-preference)').matches) return;
     let kill = () => {};
     (async () => {
       const [{ gsap }, { ScrollTrigger }] = await Promise.all([import('gsap'), import('gsap/ScrollTrigger')]);
