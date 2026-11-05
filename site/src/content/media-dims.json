@@ -1,0 +1,458 @@
+{
+"/media/brand/favicon.png": [
+72,
+72
+],
+"/media/brand/logo-black.png": [
+266,
+100
+],
+"/media/brand/logo-white.png": [
+266,
+100
+],
+"/media/brand/protos.jpg": [
+250,
+150
+],
+"/media/certs/iec-compliance-trays.jpg": [
+1241,
+1754
+],
+"/media/certs/iec-compliance.jpg": [
+1240,
+1754
+],
+"/media/certs/iso9001-certificate.jpg": [
+1240,
+1754
+],
+"/media/certs/tuv-testmark.jpg": [
+500,
+184
+],
+"/media/company/field-team.jpg": [
+1024,
+768
+],
+"/media/company/site-work.jpg": [
+300,
+400
+],
+"/media/company/warehouse.jpg": [
+1000,
+667
+],
+"/media/news/certification.jpg": [
+1080,
+1080
+],
+"/media/news/finergy-close.jpg": [
+1080,
+1920
+],
+"/media/news/finergy-cubic.jpg": [
+1080,
+1080
+],
+"/media/news/finergy-eh.jpg": [
+1080,
+1080
+],
+"/media/news/finergy-stand.jpg": [
+1080,
+1080
+],
+"/media/news/finergy-talk.jpg": [
+1080,
+1080
+],
+"/media/news/latam-2025.jpg": [
+1366,
+768
+],
+"/media/news/pilares.jpg": [
+500,
+889
+],
+"/media/news/rockwell.jpg": [
+320,
+180
+],
+"/media/news/seminar-fb.jpg": [
+1366,
+768
+],
+"/media/news/seminar-og.jpg": [
+1366,
+768
+],
+"/media/products/aisladores-electricos-1.jpg": [
+1000,
+1000
+],
+"/media/products/aisladores-electricos-2.jpg": [
+1000,
+1000
+],
+"/media/products/aisladores-electricos-3.jpg": [
+1000,
+1000
+],
+"/media/products/aisladores-electricos-4.jpg": [
+1000,
+1000
+],
+"/media/products/aisladores-electricos-5.jpg": [
+1000,
+1000
+],
+"/media/products/bandejas-porta-cables-1.jpg": [
+572,
+572
+],
+"/media/products/bandejas-porta-cables-10.jpg": [
+800,
+800
+],
+"/media/products/bandejas-porta-cables-11.jpg": [
+800,
+800
+],
+"/media/products/bandejas-porta-cables-12.jpg": [
+800,
+800
+],
+"/media/products/bandejas-porta-cables-13.jpg": [
+800,
+800
+],
+"/media/products/bandejas-porta-cables-14.jpg": [
+801,
+801
+],
+"/media/products/bandejas-porta-cables-15.jpg": [
+801,
+801
+],
+"/media/products/bandejas-porta-cables-16.jpg": [
+801,
+801
+],
+"/media/products/bandejas-porta-cables-17.jpg": [
+801,
+801
+],
+"/media/products/bandejas-porta-cables-2.jpg": [
+801,
+801
+],
+"/media/products/bandejas-porta-cables-3.jpg": [
+801,
+801
+],
+"/media/products/bandejas-porta-cables-4.jpg": [
+801,
+801
+],
+"/media/products/bandejas-porta-cables-5.jpg": [
+801,
+801
+],
+"/media/products/bandejas-porta-cables-6.jpg": [
+800,
+800
+],
+"/media/products/bandejas-porta-cables-7.jpg": [
+800,
+800
+],
+"/media/products/bandejas-porta-cables-8.jpg": [
+800,
+800
+],
+"/media/products/bandejas-porta-cables-9.jpg": [
+800,
+800
+],
+"/media/products/barras-de-cobre-1.jpg": [
+1000,
+1000
+],
+"/media/products/barras-de-cobre-2.jpg": [
+1000,
+1000
+],
+"/media/products/barras-de-cobre-3.jpg": [
+1000,
+1000
+],
+"/media/products/barras-de-cobre-4.jpg": [
+1000,
+1000
+],
+"/media/products/discos-de-aterramiento-1.jpg": [
+1000,
+1000
+],
+"/media/products/discos-de-aterramiento-2.jpg": [
+1000,
+1000
+],
+"/media/products/ducto-barras-1.jpg": [
+1000,
+1000
+],
+"/media/products/ducto-barras-2.jpg": [
+1000,
+1000
+],
+"/media/products/ducto-barras-3.jpg": [
+1000,
+1000
+],
+"/media/products/ducto-barras-4.jpg": [
+1000,
+1000
+],
+"/media/products/ducto-barras-5.jpg": [
+1000,
+1000
+],
+"/media/products/ducto-barras-6.jpg": [
+1000,
+1000
+],
+"/media/products/ducto-barras-7.jpg": [
+1000,
+1000
+],
+"/media/products/ducto-barras-8.jpg": [
+1000,
+1000
+],
+"/media/products/maquinas-aireadoras-de-aguas-servidas-1.jpg": [
+1000,
+1000
+],
+"/media/products/maquinas-aireadoras-de-aguas-servidas-2.jpg": [
+1000,
+1000
+],
+"/media/products/maquinas-aireadoras-de-aguas-servidas-3.jpg": [
+1000,
+1000
+],
+"/media/products/maquinas-aireadoras-de-aguas-servidas-4.jpg": [
+1000,
+1000
+],
+"/media/products/maquinas-aireadoras-de-aguas-servidas-5.jpg": [
+1000,
+1000
+],
+"/media/products/maquinas-aireadoras-de-aguas-servidas-6.jpg": [
+1000,
+1000
+],
+"/media/products/porta-barras-1.jpg": [
+1000,
+1000
+],
+"/media/products/porta-barras-2.jpg": [
+1000,
+1000
+],
+"/media/products/porta-barras-3.jpg": [
+1000,
+1000
+],
+"/media/products/porta-barras-4.jpg": [
+1000,
+1000
+],
+"/media/products/porta-barras-5.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-autoportantes-1.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-autoportantes-2.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-autoportantes-3.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-autoportantes-4.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-autoportantes-5.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-con-segmentacion-1.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-con-segmentacion-10.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-con-segmentacion-2.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-con-segmentacion-3.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-con-segmentacion-4.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-con-segmentacion-5.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-con-segmentacion-6.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-con-segmentacion-7.jpg": [
+586,
+586
+],
+"/media/products/tableros-con-segmentacion-8.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-con-segmentacion-9.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-de-sobreponer-1.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-de-sobreponer-2.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-de-sobreponer-3.jpg": [
+1000,
+1000
+],
+"/media/products/tableros-de-sobreponer-4.jpg": [
+1000,
+1000
+],
+"/media/projects/alcoenergy-1.jpg": [
+1013,
+570
+],
+"/media/projects/alcogreen-1.jpg": [
+955,
+716
+],
+"/media/projects/alicorp-1.jpg": [
+1180,
+885
+],
+"/media/projects/alicorp-2.jpg": [
+1180,
+885
+],
+"/media/projects/bovinsa-1.jpg": [
+562,
+749
+],
+"/media/projects/cargill-1.jpg": [
+912,
+522
+],
+"/media/projects/cbn-busbar-1.jpg": [
+1280,
+720
+],
+"/media/projects/cbn-busbar-2.jpg": [
+1280,
+720
+],
+"/media/projects/cbn-mt-1.jpg": [
+1280,
+720
+],
+"/media/projects/cbn-mt-2.jpg": [
+760,
+1013
+],
+"/media/projects/cervepar-1.jpg": [
+763,
+641
+],
+"/media/projects/cre-1.jpg": [
+1280,
+960
+],
+"/media/projects/cre-2.jpg": [
+761,
+1015
+],
+"/media/projects/cremer-1.jpg": [
+631,
+730
+],
+"/media/projects/emapa-1.jpg": [
+1280,
+720
+],
+"/media/projects/emapa-2.jpg": [
+1280,
+720
+],
+"/media/projects/finning-1.jpg": [
+1365,
+768
+],
+"/media/projects/gladymar-1.jpg": [
+1131,
+849
+],
+"/media/projects/gladymar-2.jpg": [
+701,
+849
+],
+"/media/projects/soboce-1.jpg": [
+1180,
+885
+],
+"/media/projects/soboce-2.jpg": [
+1280,
+720
+],
+"/media/projects/soboce-3.jpg": [
+1180,
+885
+],
+"/media/projects/sofia-1.jpg": [
+1272,
+952
+],
+"/media/projects/sofia-2.jpg": [
+1271,
+953
+],
+"/media/projects/ypfb-1.jpg": [
+824,
+791
+],
+"/media/site/planta-etanol.jpg": [
+624,
+624
+]
+}

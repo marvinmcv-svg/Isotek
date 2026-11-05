@@ -1,0 +1,36 @@
+{
+  "name": "isotek-latam-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "tsc --noEmit",
+    "seed:export": "node --experimental-strip-types scripts/export-seed.ts"
+  },
+  "dependencies": {
+    "@sanity/image-url": "^2.1.1",
+    "@sanity/vision": "^6.22.0",
+    "gsap": "^3.15.1",
+    "motion": "^14.9.1",
+    "next": "^16.4.5",
+    "next-intl": "^4.14.9",
+    "next-sanity": "^13.4.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "sanity": "^6.22.0",
+    "server-only": "^0.0.1",
+    "styled-components": "^6.6.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.4",
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.4",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,163 @@
+@import 'tailwindcss';
+
+/* ── Design tokens (research/06-creative-direction.md) ─────────────────── */
+@theme {
+  --color-ink: #0e0f11;
+  --color-ink-2: #17191c;
+  --color-steel-900: #2a2d31;
+  --color-steel-600: #5b6067; /* 5.6:1 on paper */
+  --color-steel-400: #8e9399; /* 6.2:1 on ink */
+  --color-steel-300: #b9bcc0;
+  --color-steel-150: #d9d7d2;
+  --color-paper: #f2f0ec;
+  --color-white: #ffffff;
+  --color-signal: #e41e18; /* logo red: fills, large text, UI */
+  --color-signal-ink: #b8140f; /* small red text on paper: 5.9:1 */
+  --color-signal-bright: #ff4a3d; /* small red text on ink: 5.8:1 */
+  --color-copper: #c2703d;
+
+  --font-display: var(--font-archivo), 'Arial Narrow', sans-serif;
+  --font-sans: var(--font-source), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  --text-hero: clamp(3.75rem, min(12.5vw, 17vh), 10.5rem);
+  --text-hero--line-height: 0.86;
+  --text-4xl: clamp(2.75rem, 7vw, 7.5rem);
+  --text-4xl--line-height: 0.9;
+  --text-3xl: clamp(2.5rem, 5vw, 4.5rem);
+  --text-3xl--line-height: 0.95;
+  --text-2xl: clamp(2rem, 3.4vw, 2.75rem);
+  --text-2xl--line-height: 1;
+  --text-xl: clamp(1.5rem, 2.2vw, 1.875rem);
+  --text-xl--line-height: 1.15;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-snap: cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+/* ── Base ─────────────────────────────────────────────────────────────── */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5rem;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (min-width: 1024px) {
+    body { font-size: 1.125rem; }
+  }
+  ::selection { background: var(--color-signal); color: var(--color-white); }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 3px;
+  }
+  .on-dark :focus-visible { outline-color: var(--color-signal-bright); }
+
+  h1, h2, h3, .display {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-stretch: 72%;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+}
+
+/* ── Utilities ────────────────────────────────────────────────────────── */
+@utility mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1440px;
+  padding-inline: 1rem;
+  @media (min-width: 640px) { padding-inline: 1.5rem; }
+  @media (min-width: 1024px) { padding-inline: 3.5rem; }
+}
+@utility tabular { font-variant-numeric: tabular-nums; }
+
+/* Engineering grid texture on dark sections */
+@utility grid-lines {
+  background-image:
+    linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Link underline that draws left→right */
+@utility link-draw {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 280ms var(--ease-out);
+  &:hover, &:focus-visible { background-size: 100% 1px; }
+}
+
+/* ── Reveal system: content is visible unless JS opts in ──────────────── */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+html.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+html.js [data-reveal-img] {
+  /* starts as a 2px line: a fully clipped target never reports as intersecting */
+  clip-path: inset(calc(50% - 1px) 0 calc(50% - 1px) 0);
+  transition: clip-path 900ms var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+html.js [data-reveal-img].is-in { clip-path: inset(0 0 0 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  html.js [data-reveal], html.js [data-reveal-img] {
+    opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none !important;
+  }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+/* ── Hero "Energizar" sequence (CSS only; renders final state if reduced motion) ── */
+@keyframes bus-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes feeder-drop { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes node-live {
+  0% { background: var(--color-ink); border-color: var(--color-steel-400); box-shadow: 0 0 0 0 rgb(228 30 24 / 0); }
+  60% { box-shadow: 0 0 0 10px rgb(228 30 24 / 0.25); }
+  100% { background: var(--color-signal); border-color: var(--color-signal); box-shadow: 0 0 0 5px rgb(228 30 24 / 0.18); }
+}
+@keyframes pulse-run { from { left: 0; opacity: 1; } 90% { opacity: 1; } to { left: 100%; opacity: 0; } }
+@keyframes rise { from { transform: translateY(40%); opacity: 0.001; } to { transform: none; opacity: 1; } }
+@keyframes fade-up { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes photo-on { from { opacity: 0.18; transform: scale(1.06); } to { opacity: 0.5; transform: scale(1); } }
+
+.hero-bus { transform-origin: left; animation: bus-draw 900ms var(--ease-in-out) 150ms both; }
+.hero-feeder { transform-origin: top; animation: feeder-drop 420ms var(--ease-in-out) both; animation-delay: calc(800ms + var(--i) * 140ms); }
+.hero-node { animation: node-live 500ms var(--ease-snap) both; animation-delay: calc(1250ms + var(--i) * 140ms); }
+.hero-label { animation: fade-up 600ms var(--ease-out) both; animation-delay: calc(1150ms + var(--i) * 140ms); }
+.hero-pulse { animation: pulse-run 1100ms var(--ease-in-out) 1100ms both; }
+.hero-line { display: block; animation: rise 800ms var(--ease-out) both; animation-delay: calc(200ms + var(--i) * 90ms); }
+.hero-fade { animation: fade-up 700ms var(--ease-out) both; animation-delay: var(--d, 600ms); }
+.hero-photo { animation: photo-on 1800ms var(--ease-out) 300ms both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-bus, .hero-feeder, .hero-node, .hero-label, .hero-line, .hero-fade, .hero-photo { animation: none !important; }
+  .hero-node { background: var(--color-signal); border-color: var(--color-signal); }
+  .hero-photo { opacity: 0.5; }
+  .hero-pulse { display: none; }
+}
