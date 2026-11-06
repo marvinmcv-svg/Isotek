@@ -236,5 +236,71 @@
   "privacy": {
     "title": "Política de privacidad",
     "metaDescription": "Cómo ISOTEK LATAM trata los datos enviados a través de este sitio."
+  },
+  "funnel": {
+    "eyebrow": "Cotización en 1 minuto",
+    "title": "Cuéntanos qué necesitas",
+    "lead": "Cuatro pasos y te abrimos WhatsApp con el mensaje listo. Un ingeniero de nuestro equipo te responde en horario laboral.",
+    "steps": [
+      "Qué buscas",
+      "Detalles",
+      "Tus datos",
+      "Enviar"
+    ],
+    "stepLabel": "Paso {n} de 4",
+    "needs": {
+      "tableros": {
+        "title": "Tableros y CCM",
+        "desc": "Tableros eléctricos, CCM inteligentes y celdas fabricados en Bolivia",
+        "msg": "tableros eléctricos / CCM"
+      },
+      "epc": {
+        "title": "Un proyecto llave en mano",
+        "desc": "Ingeniería, procura, montaje y puesta en marcha con un solo responsable",
+        "msg": "un proyecto llave en mano (EPC)"
+      },
+      "instrumentacion": {
+        "title": "Instrumentación y calibración",
+        "desc": "Equipos Endress+Hauser y servicio de calibración",
+        "msg": "instrumentación / calibración"
+      },
+      "consulta": {
+        "title": "Tengo una consulta",
+        "desc": "Repuestos, servicio técnico, mantenimiento o lo que necesites",
+        "msg": "hacer una consulta"
+      }
+    },
+    "industry": "¿En qué industria?",
+    "timeline": "¿Para cuándo?",
+    "timelines": {
+      "urgent": "Urgente",
+      "soon": "En 1 a 3 meses",
+      "planning": "Estamos planificando"
+    },
+    "notes": "Cuéntanos un poco más (opcional)",
+    "notesPh": "Ej.: CCM para 12 motores, planta en Santa Cruz, con variadores…",
+    "name": "Tu nombre",
+    "company": "Empresa (opcional)",
+    "city": "Ciudad (opcional)",
+    "required": "Escribe tu nombre para continuar",
+    "review": "Así llegará tu mensaje. Revísalo y toca enviar en WhatsApp.",
+    "send": "Abrir WhatsApp",
+    "orEmail": "Prefiero escribir un correo",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "online": "en línea",
+    "today": "Hoy",
+    "typing": "Mensaje",
+    "greeting": "¡Hola! 👋 Somos ISOTEK LATAM. Cuéntanos qué necesitas y un ingeniero te responde a la brevedad.",
+    "hint": "Se abre WhatsApp con este mensaje listo. Solo tocas enviar.",
+    "msgHello": "¡Hola ISOTEK! 👋",
+    "msgIam": "Soy {name}",
+    "msgFrom": "de {company}",
+    "msgNeed": "Me interesa {need}.",
+    "msgIndustry": "Industria: {v}",
+    "msgTimeline": "Plazo: {v}",
+    "msgCity": "Ciudad: {v}",
+    "msgNotes": "Detalle: {v}",
+    "subject": "Consulta desde la web"
   }
 }

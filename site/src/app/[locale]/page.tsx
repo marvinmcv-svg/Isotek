@@ -81,7 +81,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
               <li key={sv.slug} data-reveal style={{ ['--d' as string]: `${(i % 4) * 50}ms` }}>
                 <Link href={`/soluciones#${sv.slug}`} className="group relative grid grid-cols-[3.5rem_1fr_auto] items-baseline gap-x-4 border-b border-steel-150 py-6 transition-colors hover:border-signal lg:grid-cols-[6rem_minmax(0,5fr)_minmax(0,5fr)_auto] lg:py-8">
                   <span className="mono text-steel-600 transition-colors group-hover:text-signal-ink">{sv.code}</span>
-                  <h3 className="display text-xl uppercase transition-[font-stretch] duration-300 group-hover:[font-stretch:85%] lg:text-2xl">{tr(sv.title, locale)}</h3>
+                  <h3 className="display text-xl uppercase transition-transform duration-300 group-hover:translate-x-1 lg:text-2xl">{tr(sv.title, locale)}</h3>
                   <p className="col-start-2 mt-2 text-steel-600 lg:col-start-3 lg:mt-0">{tr(sv.summary, locale)}</p>
                   <svg aria-hidden viewBox="0 0 16 16" className="col-start-3 row-start-1 size-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-signal lg:col-start-4" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M1 8h13M9 3l5 5-5 5" /></svg>
                 </Link>

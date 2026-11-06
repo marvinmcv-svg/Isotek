@@ -2,32 +2,37 @@
 
 /* ── Design tokens (research/06-creative-direction.md) ─────────────────── */
 @theme {
-  --color-ink: #0e0f11;
-  --color-ink-2: #17191c;
-  --color-steel-900: #2a2d31;
-  --color-steel-600: #5b6067; /* 5.6:1 on paper */
-  --color-steel-400: #8e9399; /* 6.2:1 on ink */
-  --color-steel-300: #b9bcc0;
-  --color-steel-150: #d9d7d2;
-  --color-paper: #f2f0ec;
-  --color-white: #ffffff;
-  --color-signal: #e41e18; /* logo red: fills, large text, UI */
-  --color-signal-ink: #b8140f; /* small red text on paper: 5.9:1 */
-  --color-signal-bright: #ff4a3d; /* small red text on ink: 5.8:1 */
-  --color-copper: #c2703d;
+  /* Warm premium palette: espresso darks, cream paper, logo red as the accent */
+  --color-ink: #15110f;
+  --color-ink-2: #1e1916;
+  --color-steel-900: #2e2723;
+  --color-steel-600: #6a5f57; /* 5.5:1 on paper */
+  --color-steel-400: #a39a91; /* 6.6:1 on ink */
+  --color-steel-300: #cfc6bc;
+  --color-steel-150: #e4dacd;
+  --color-paper: #f7f2ea;
+  --color-white: #fffdf9;
+  --color-signal: #d8261f; /* logo red: fills, large text, UI */
+  --color-signal-ink: #a8180f; /* small red text on paper */
+  --color-signal-bright: #ff6a5c; /* small red text on ink */
+  --color-copper: #c79a63; /* warm gold for premium details */
+  --color-wa: #25d366;
+  --color-wa-ink: #0b141a;
+  --color-wa-panel: #1f2c34;
+  --color-wa-out: #005c4b;
 
-  --font-display: var(--font-archivo), 'Arial Narrow', sans-serif;
-  --font-sans: var(--font-source), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-display: var(--font-marcellus), Georgia, serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --font-mono: var(--font-manrope), system-ui, sans-serif;
 
-  --text-hero: clamp(3.75rem, min(12.5vw, 17vh), 10.5rem);
-  --text-hero--line-height: 0.86;
-  --text-4xl: clamp(2.75rem, 7vw, 7.5rem);
-  --text-4xl--line-height: 0.9;
-  --text-3xl: clamp(2.5rem, 5vw, 4.5rem);
-  --text-3xl--line-height: 0.95;
-  --text-2xl: clamp(2rem, 3.4vw, 2.75rem);
-  --text-2xl--line-height: 1;
+  --text-hero: clamp(3rem, min(9.5vw, 14vh), 8rem);
+  --text-hero--line-height: 0.98;
+  --text-4xl: clamp(2.4rem, 5.6vw, 5.75rem);
+  --text-4xl--line-height: 1;
+  --text-3xl: clamp(2.1rem, 4vw, 3.6rem);
+  --text-3xl--line-height: 1.06;
+  --text-2xl: clamp(1.7rem, 2.8vw, 2.4rem);
+  --text-2xl--line-height: 1.1;
   --text-xl: clamp(1.5rem, 2.2vw, 1.875rem);
   --text-xl--line-height: 1.15;
 
@@ -64,9 +69,8 @@
 
   h1, h2, h3, .display {
     font-family: var(--font-display);
-    font-weight: 800;
-    font-stretch: 72%;
-    letter-spacing: -0.02em;
+    font-weight: 400;
+    letter-spacing: 0.02em;
     text-wrap: balance;
     overflow-wrap: break-word;
   }
@@ -79,12 +83,12 @@
 
 /* ── Utilities ────────────────────────────────────────────────────────── */
 @utility mono {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
   line-height: 1.4;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 700;
 }
 @utility container-x {
   width: 100%;
@@ -142,7 +146,7 @@ html.js [data-reveal-img].is-in { clip-path: inset(0 0 0 0); }
 @keyframes bus-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes feeder-drop { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 @keyframes node-live {
-  0% { background: var(--color-ink); border-color: var(--color-steel-400); box-shadow: 0 0 0 0 rgb(228 30 24 / 0); }
+  0% { background: var(--color-ink); border-color: var(--color-steel-400); box-shadow: 0 0 0 0 rgb(216 38 31 / 0); }
   60% { box-shadow: 0 0 0 10px rgb(228 30 24 / 0.25); }
   100% { background: var(--color-signal); border-color: var(--color-signal); box-shadow: 0 0 0 5px rgb(228 30 24 / 0.18); }
 }

@@ -1,30 +1,25 @@
-import { getTranslations } from 'next-intl/server';
-import { ButtonLink } from '@/components/ui/Button';
-import { SectionNode } from '@/components/ui/SectionNode';
-import { WhatsAppGlyph } from '@/components/ui/WhatsAppFab';
-import { getSettings } from '@/content';
-import { waLink } from '@/lib/site';
+import { getLocale, getTranslations } from 'next-intl/server';
+import { Eyebrow } from '@/components/ui/Eyebrow';
+import { QuoteFunnel } from '@/components/sections/QuoteFunnel';
+import { getIndustries, getSettings } from '@/content';
+import { tr } from '@/lib/site';
+import type { Locale } from '@/content/types';
 
-export async function CtaBand({ topic }: { topic?: string }) {
-  const [t, c, s] = await Promise.all([getTranslations('home'), getTranslations('common'), getSettings()]);
+/** Closing call to action on every page: the guided WhatsApp enquiry. */
+export async function CtaBand({ topic, first = false }: { topic?: string; first?: boolean }) {
+  const [t, s, industries, locale] = await Promise.all([getTranslations('funnel'), getSettings(), getIndustries(), getLocale()]);
+  const Heading = first ? 'h1' : 'h2';
   return (
-    <section className="relative overflow-hidden bg-signal py-20 text-white lg:py-28">
-      <div aria-hidden className="grid-lines absolute inset-0 opacity-60" />
-      <div className="container-x relative">
-        <div className="relative grid gap-10 lg:grid-cols-12 lg:items-end">
-          <SectionNode dark />
-          <div className="lg:col-span-7">
-            <h2 className="text-4xl uppercase">{t('ctaTitle')}</h2>
-            <p className="mt-6 max-w-xl text-lg text-white/90">{t('ctaLead')}</p>
-          </div>
-          <div className="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end">
-            <ButtonLink href={topic ? { pathname: '/contacto', query: { tema: topic } } : '/contacto'} variant="ghost-dark" className="bg-ink !border-ink">
-              {t('ctaPrimary')}
-            </ButtonLink>
-            <a href={waLink(s.whatsapp)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-3 border border-white/50 px-6 font-semibold transition-colors hover:border-white hover:bg-white hover:text-signal-ink">
-              <WhatsAppGlyph className="size-5" /> {c('whatsapp')}
-            </a>
-          </div>
+    <section id="cotizar" aria-labelledby="cotizar-title" className={`on-dark relative isolate overflow-hidden bg-ink text-white ${first ? 'pb-24 pt-28 lg:pb-32 lg:pt-36' : 'py-24 lg:py-32'}`}>
+      <div aria-hidden className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_100%_0%,rgb(216_38_31/0.18),transparent_50%),radial-gradient(ellipse_at_0%_100%,rgb(199_154_99/0.08),transparent_45%)]" />
+      <div className="container-x">
+        <div className="max-w-3xl">
+          <Eyebrow dark>{t('eyebrow')}</Eyebrow>
+          <Heading id="cotizar-title" className={`mt-6 uppercase ${first ? 'text-4xl' : 'text-3xl'}`}>{t('title')}</Heading>
+          <p className="mt-6 max-w-xl text-lg text-steel-300">{t('lead')}</p>
+        </div>
+        <div className="mt-14 lg:mt-16">
+          <QuoteFunnel whatsapp={s.whatsapp} email={s.email} topic={topic} industries={industries.map((i) => tr(i.name, locale as Locale))} />
         </div>
       </div>
     </section>
