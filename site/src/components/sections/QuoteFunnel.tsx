@@ -48,7 +48,6 @@ export function QuoteFunnel({ whatsapp, email, industries, topic }: { whatsapp: 
     notes.trim() && t('msgNotes', { v: notes.trim() }),
   ].filter(Boolean) as string[];
   const message = lines.join('\n');
-  const started = step > 0 || need !== null;
 
   const canNext = step === 0 ? need !== null : step === 2 ? name.trim().length > 1 : true;
   const next = () => {
@@ -206,10 +205,13 @@ export function QuoteFunnel({ whatsapp, email, industries, topic }: { whatsapp: 
                   {t('greeting')}
                   <span className="mt-1 block text-right text-[0.65rem] text-steel-400">09:41</span>
                 </p>
-                {started && (
-                  <p className="ml-auto max-w-[88%] whitespace-pre-line rounded-lg rounded-tr-none bg-wa-out px-3 py-2 text-white transition-all">
-                    {message}
-                    <span className="mt-1 block text-right text-[0.65rem] text-white/60">09:42 <span className="text-sky-300">✓✓</span></span>
+                <p key={step} className="wa-pop ml-auto max-w-[88%] whitespace-pre-line rounded-lg rounded-tr-none bg-wa-out px-3 py-2 text-white">
+                  {message}
+                  <span className="mt-1 block text-right text-[0.65rem] text-white/60">09:42 <span className="text-sky-300">✓✓</span></span>
+                </p>
+                {step === 3 && (
+                  <p className="wa-pop flex w-fit gap-1 rounded-lg rounded-tl-none bg-wa-panel px-4 py-3" style={{ ['--d' as string]: '600ms' }}>
+                    {[0, 1, 2].map((i) => <span key={i} className="wa-dot size-1.5 rounded-full bg-steel-300" style={{ ['--i' as string]: i }} />)}
                   </p>
                 )}
               </div>
@@ -221,7 +223,7 @@ export function QuoteFunnel({ whatsapp, email, industries, topic }: { whatsapp: 
               </div>
             </div>
           </div>
-          <p className="mt-5 text-center text-sm text-steel-400">{t('hint')}</p>
+          <p className="mt-5 text-center text-sm text-steel-400">{t('hint')} <span className="whitespace-nowrap text-steel-300">+{whatsapp.slice(0, 3)} {whatsapp.slice(3)}</span></p>
         </div>
       </div>
     </div>

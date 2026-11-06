@@ -135,8 +135,23 @@ html.js [data-reveal-img] {
 }
 html.js [data-reveal-img].is-in { clip-path: inset(0 0 0 0); }
 
+/* Split headings: the heading itself stays put, its words rise one after another */
+html.js [data-reveal].split { opacity: 1; transform: none; }
+.split-w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.08em; margin-bottom: -0.08em; }
+.split-w > span { display: inline-block; }
+html.js [data-reveal].split .split-w > span {
+  transform: translateY(110%) rotate(3deg);
+  transition: transform 900ms var(--ease-out);
+  transition-delay: calc(var(--d, 0ms) + var(--i) * 45ms);
+}
+html.js [data-reveal].split.is-in .split-w > span { transform: none; }
+
+/* Image card hover zoom + scroll parallax wrapper */
+.parallax-media { position: absolute; inset: -10% 0; }
+.outline-text { color: transparent; -webkit-text-stroke: 1px rgb(255 253 249 / 0.28); }
+
 @media (prefers-reduced-motion: reduce) {
-  html.js [data-reveal], html.js [data-reveal-img] {
+  html.js [data-reveal], html.js [data-reveal-img], html.js [data-reveal].split .split-w > span {
     opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none !important;
   }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
@@ -189,6 +204,12 @@ html.js [data-reveal-img].is-in { clip-path: inset(0 0 0 0); }
   .hero-fade, .slide-in, .word-rise, .hero-slide-img.is-active, .hero-slide-img.is-active .kenburns, .energy-field { animation: none !important; }
   .hero-card { transform: none; }
 }
+
+/* WhatsApp mock-up bubbles (QuoteFunnel.tsx) */
+@keyframes wa-pop { from { opacity: 0; transform: translateY(10px) scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes wa-dot { 0%, 60%, 100% { transform: none; opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
+.wa-pop { transform-origin: bottom right; animation: wa-pop 450ms var(--ease-out) both; animation-delay: var(--d, 0ms); }
+.wa-dot { animation: wa-dot 1.2s ease-in-out infinite; animation-delay: calc(var(--i) * 150ms); }
 
 /* Lenis (SmoothScroll.tsx) */
 html.lenis, html.lenis body { height: auto; }

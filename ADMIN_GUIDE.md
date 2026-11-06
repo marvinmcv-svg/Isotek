@@ -38,7 +38,7 @@ Every text field has two boxes side by side: **Español** and **English**. Spani
 
 ## Changing phone, email, WhatsApp, address or offices
 
-Open **Ajustes del sitio**. WhatsApp must be digits only, with the country code and no "+" or spaces (e.g. `59169224248`). Changes apply to the header, footer, contact page and WhatsApp buttons everywhere.
+Open **Ajustes del sitio**. WhatsApp must be digits only, with the country code and no "+" or spaces (e.g. `59177165787`). Changes apply to the header, footer, contact page and WhatsApp buttons everywhere.
 
 ## Changing the numbers on the home page
 

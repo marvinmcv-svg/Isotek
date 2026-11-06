@@ -10,14 +10,16 @@ export function ProjectCard({ p, locale, index = 0, size = 'md', priority = fals
     <Link href={`/proyectos/${p.slug}`} className="group block" data-reveal style={{ ['--d' as string]: `${(index % 3) * 80}ms` }}>
       <div className={`relative overflow-hidden bg-ink-2 ${size === 'lg' ? 'aspect-[4/3] lg:aspect-[16/10]' : 'aspect-[4/3]'}`}>
         {img && (
+          <div data-parallax="6" className="parallax-media">
           <Image
             src={img.src}
             alt={tr(img.alt, locale)}
             fill
             priority={priority}
             sizes={size === 'lg' ? '(min-width: 1024px) 58vw, 100vw' : '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'}
-            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
           />
+          </div>
         )}
         <span className="mono absolute left-3 top-3 bg-ink/85 px-2 py-1 text-white">{tr(countryName[p.country], locale)}</span>
       </div>

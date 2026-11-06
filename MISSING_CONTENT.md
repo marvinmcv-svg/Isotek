@@ -12,7 +12,7 @@ Nothing on the new site was invented. Where content was missing, the site either
 | 4 | **Sanity account / project** (free tier is enough) | Needed to switch on the admin portal. The site runs from local content until then. | `/studio` |
 | 5 | **Email delivery key** (Resend, or tell us your preferred provider) and the inbox that should receive enquiries | Without it the form correctly says it could not send and offers email/WhatsApp instead. | `/contacto` |
 | 6 | **Confirm the team list** | The current home page shows two conflicting lists. The new site uses the "LATAM" list (Juan Manuel Espejo, Marcos Chávez, Reinhard Peña De Lillo, Wilmar Martínez, Ricardo Zurita, Julio Montero, Ali Mustafa, Samira Abuawad, José Carlos Villagómez, Irazema Justiniano, Norma Córdova Jiménez). Please confirm names, titles, and that each person agrees to their email/WhatsApp being public. | `/empresa` |
-| 7 | **Confirm the main WhatsApp number** | Taken from the site's WhatsApp widget ("Departamento Comercial", +591 69224248). | Floating button, CTAs, contact page |
+| 7 | ~~Confirm the main WhatsApp number~~ **Done:** client confirmed +591 77165787. | Floating button, CTAs, contact page |
 
 ## Strongly recommended
 
