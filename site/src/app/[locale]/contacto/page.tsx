@@ -4,6 +4,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow';
 import { SectionNode } from '@/components/ui/SectionNode';
 import { WhatsAppGlyph } from '@/components/ui/WhatsAppFab';
 import { ContactForm } from '@/components/sections/ContactForm';
+import { CtaBand } from '@/components/sections/CtaBand';
 import { getSettings } from '@/content';
 import { alternates, tr, waLink } from '@/lib/site';
 import type { Locale } from '@/content/types';
@@ -19,13 +20,15 @@ export default async function Contact({ params }: { params: Promise<{ locale: Lo
   setRequestLocale(locale);
   const [t, c, s] = await Promise.all([getTranslations('contact'), getTranslations('common'), getSettings()]);
   return (
-    <section className="bg-paper pb-24 pt-28 lg:pt-36">
+    <>
+    <CtaBand first />
+    <section className="bg-paper py-24 lg:py-32">
       <div className="container-x">
         <div className="relative grid gap-14 lg:grid-cols-12">
           <SectionNode code="IN" />
           <div className="lg:col-span-7">
             <Eyebrow>{t('eyebrow')}</Eyebrow>
-            <h1 className="mt-6 text-4xl uppercase">{t('title')}</h1>
+            <h2 className="mt-6 text-3xl uppercase">{t('title')}</h2>
             <p className="mt-6 max-w-xl text-lg text-steel-600">{t('lead')}</p>
             <div className="mt-12">
               <ContactForm email={s.email} whatsapp={s.whatsapp} />
@@ -50,5 +53,6 @@ export default async function Contact({ params }: { params: Promise<{ locale: Lo
         </div>
       </div>
     </section>
+    </>
   );
 }

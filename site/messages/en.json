@@ -52,15 +52,7 @@
     "eyebrow": "Industrial EPC · Bolivia · LATAM",
     "title1": "One",
     "title2": "supplier.",
-    "lead": "From engineering to commissioning. We design, manufacture in Bolivia, install and maintain the electrical and control systems of industrial plants across the region.",
-    "feeders": [
-      "Engineering",
-      "Procurement",
-      "Fabrication",
-      "Commissioning"
-    ],
     "ctaPrimary": "Request a consultation",
-    "ctaProjects": "See projects",
     "proofTitle": "Measurable backing",
     "servicesEyebrow": "Solutions and services",
     "servicesTitle": "Eight service lines. One point of responsibility.",
@@ -81,7 +73,38 @@
     "officesEyebrow": "Presence",
     "officesTitle": "Headquartered in Bolivia. Local teams across the region.",
     "ctaTitle": "Have a project in mind?",
-    "ctaLead": "Tell us what you need. An engineer will assess your project and reply with a tailored proposal."
+    "ctaLead": "Tell us what you need. An engineer will assess your project and reply with a tailored proposal.",
+    "ctaService": "View service",
+    "heroSlides": {
+      "ccm": {
+        "tab": "Motor Control Centres",
+        "kicker": "IEC 61439-1/5 · CUBIC and PROTOS"
+      },
+      "epc": {
+        "tab": "Turnkey EPC",
+        "kicker": "Engineering · Procurement · Construction"
+      },
+      "electricas-bt-mt": {
+        "tab": "Low & medium voltage",
+        "kicker": "Siemens · Schneider · Rockwell · ABB"
+      },
+      "instrumentacion": {
+        "tab": "Instrumentation & calibration",
+        "kicker": "Endress+Hauser-certified laboratory"
+      },
+      "metalmecanica": {
+        "tab": "Metal fabrication",
+        "kicker": "CNC lines · ISO 9001:2015"
+      }
+    },
+    "heroLabels": {
+      "carousel": "Key services",
+      "slide": "slide",
+      "prev": "Previous service",
+      "next": "Next service",
+      "pause": "Pause",
+      "play": "Play"
+    }
   },
   "solutions": {
     "metaTitle": "Solutions and services — EPC, switchboards, MCCs, instrumentation | ISOTEK LATAM",
@@ -236,5 +259,71 @@
   "privacy": {
     "title": "Privacy policy",
     "metaDescription": "How ISOTEK LATAM handles data submitted through this website."
+  },
+  "funnel": {
+    "eyebrow": "Quote in one minute",
+    "title": "Tell us what you need",
+    "lead": "Four quick steps and WhatsApp opens with your message ready. An engineer from our team replies during business hours.",
+    "steps": [
+      "What you need",
+      "Details",
+      "Your details",
+      "Send"
+    ],
+    "stepLabel": "Step {n} of 4",
+    "needs": {
+      "tableros": {
+        "title": "Switchboards & MCCs",
+        "desc": "Switchboards, smart MCCs and switchgear built in Bolivia",
+        "msg": "switchboards / MCCs"
+      },
+      "epc": {
+        "title": "A turnkey project",
+        "desc": "Engineering, procurement, installation and commissioning under one contract",
+        "msg": "a turnkey (EPC) project"
+      },
+      "instrumentacion": {
+        "title": "Instrumentation & calibration",
+        "desc": "Endress+Hauser equipment and calibration service",
+        "msg": "instrumentation / calibration"
+      },
+      "consulta": {
+        "title": "I have a question",
+        "desc": "Spare parts, field service, maintenance or anything else",
+        "msg": "asking a question"
+      }
+    },
+    "industry": "Which industry?",
+    "timeline": "When do you need it?",
+    "timelines": {
+      "urgent": "Urgent",
+      "soon": "In 1–3 months",
+      "planning": "Still planning"
+    },
+    "notes": "Tell us a bit more (optional)",
+    "notesPh": "E.g. MCC for 12 motors, plant in Santa Cruz, with VFDs…",
+    "name": "Your name",
+    "company": "Company (optional)",
+    "city": "City (optional)",
+    "required": "Enter your name to continue",
+    "review": "This is the message we'll send. Check it, then tap send in WhatsApp.",
+    "send": "Open WhatsApp",
+    "orEmail": "I'd rather send an email",
+    "back": "Back",
+    "next": "Next",
+    "online": "online",
+    "today": "Today",
+    "typing": "Message",
+    "greeting": "Hi! 👋 This is ISOTEK LATAM. Tell us what you need and an engineer will get back to you shortly.",
+    "hint": "WhatsApp opens with this message ready. You just tap send.",
+    "msgHello": "Hi ISOTEK! 👋",
+    "msgIam": "I'm {name}",
+    "msgFrom": "from {company}",
+    "msgNeed": "I'm interested in {need}.",
+    "msgIndustry": "Industry: {v}",
+    "msgTimeline": "Timeline: {v}",
+    "msgCity": "City: {v}",
+    "msgNotes": "Details: {v}",
+    "subject": "Enquiry from the website"
   }
 }

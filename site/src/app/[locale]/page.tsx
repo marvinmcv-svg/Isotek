@@ -2,11 +2,12 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import { HeroEnergize } from '@/components/home/HeroEnergize';
+import { HeroCarousel, type HeroSlide } from '@/components/home/HeroCarousel';
 import { ButtonLink } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { SectionNode } from '@/components/ui/SectionNode';
 import { Counter } from '@/components/motion/Counter';
+import { SplitWords } from '@/components/motion/SplitWords';
 import { ProjectCard } from '@/components/sections/ProjectCard';
 import { CtaBand } from '@/components/sections/CtaBand';
 import { getBrands, getIndustries, getProducts, getProjects, getServices, getSettings } from '@/content';
@@ -26,7 +27,24 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
     getTranslations('home'), getSettings(), getServices(), getProjects(), getIndustries(), getBrands(), getProducts(),
   ]);
   const featured = projects.filter((p) => p.featured).slice(0, 5);
-  const hero = projects.find((p) => p.slug === 'centro-de-control-de-motores-inteligente')!.images[0];
+  // Key services for the hero carousel, each paired with its strongest project photo
+  const heroPhotos: Record<string, string> = {
+    ccm: '/media/projects/alicorp-1.jpg',
+    epc: '/media/projects/alcoenergy-1.jpg',
+    'electricas-bt-mt': '/media/projects/cbn-busbar-1.jpg',
+    instrumentacion: '/media/projects/alcogreen-1.jpg',
+    metalmecanica: '/media/projects/soboce-2.jpg',
+  };
+  const allImages = projects.flatMap((p) => p.images);
+  const heroSlides: HeroSlide[] = Object.entries(heroPhotos).map(([slug, src]) => {
+    const sv = services.find((x) => x.slug === slug)!;
+    const img = allImages.find((i) => i.src === src)!;
+    return {
+      slug, code: sv.code, title: tr(sv.title, locale), summary: tr(sv.summary, locale),
+      tab: t(`heroSlides.${slug}.tab`), kicker: t(`heroSlides.${slug}.kicker`),
+      image: { src: img.src, alt: tr(img.alt, locale) },
+    };
+  });
   const productShots = ['porta-barras', 'barras-de-cobre', 'tableros-autoportantes', 'aisladores-electricos']
     .map((slug) => products.find((p) => p.slug === slug))
     .filter(Boolean)
@@ -34,10 +52,10 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
 
   return (
     <>
-      <HeroEnergize
-        eyebrow={t('eyebrow')} title1={t('title1')} title2={t('title2')} lead={t('lead')}
-        feeders={t.raw('feeders') as string[]} ctaPrimary={t('ctaPrimary')} ctaProjects={t('ctaProjects')}
-        image={hero} imageAlt={tr(hero.alt, locale)}
+      <HeroCarousel
+        eyebrow={t('eyebrow')} title1={t('title1')} title2={t('title2')} slides={heroSlides}
+        ctaService={t('ctaService')} ctaPrimary={t('ctaPrimary')}
+        labels={t.raw('heroLabels') as { carousel: string; slide: string; prev: string; next: string; pause: string; play: string }}
       />
 
       {/* Proof strip */}
@@ -72,7 +90,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
             <SectionNode code="FDR" />
             <div className="lg:col-span-5">
               <Eyebrow>{t('servicesEyebrow')}</Eyebrow>
-              <h2 id="services" data-reveal className="mt-6 text-3xl uppercase">{t('servicesTitle')}</h2>
+              <h2 id="services" data-reveal aria-label={t('servicesTitle')} className="split mt-6 text-3xl uppercase"><SplitWords text={t('servicesTitle')} /></h2>
             </div>
             <p data-reveal className="max-w-xl self-end text-lg text-steel-600 lg:col-span-6 lg:col-start-7">{t('servicesLead')}</p>
           </div>
@@ -81,7 +99,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
               <li key={sv.slug} data-reveal style={{ ['--d' as string]: `${(i % 4) * 50}ms` }}>
                 <Link href={`/soluciones#${sv.slug}`} className="group relative grid grid-cols-[3.5rem_1fr_auto] items-baseline gap-x-4 border-b border-steel-150 py-6 transition-colors hover:border-signal lg:grid-cols-[6rem_minmax(0,5fr)_minmax(0,5fr)_auto] lg:py-8">
                   <span className="mono text-steel-600 transition-colors group-hover:text-signal-ink">{sv.code}</span>
-                  <h3 className="display text-xl uppercase transition-[font-stretch] duration-300 group-hover:[font-stretch:85%] lg:text-2xl">{tr(sv.title, locale)}</h3>
+                  <h3 className="display text-xl uppercase transition-transform duration-300 group-hover:translate-x-1 lg:text-2xl">{tr(sv.title, locale)}</h3>
                   <p className="col-start-2 mt-2 text-steel-600 lg:col-start-3 lg:mt-0">{tr(sv.summary, locale)}</p>
                   <svg aria-hidden viewBox="0 0 16 16" className="col-start-3 row-start-1 size-5 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-signal lg:col-start-4" fill="none" stroke="currentColor" strokeWidth="1.6"><path d="M1 8h13M9 3l5 5-5 5" /></svg>
                 </Link>
@@ -98,13 +116,13 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
             <SectionNode code="FDR-PRJ" dark />
             <div>
               <Eyebrow dark>{t('projectsEyebrow')}</Eyebrow>
-              <h2 id="projects" data-reveal className="mt-6 max-w-3xl text-3xl uppercase">{t('projectsTitle')}</h2>
+              <h2 id="projects" data-reveal aria-label={t('projectsTitle')} className="split mt-6 max-w-3xl text-3xl uppercase"><SplitWords text={t('projectsTitle')} /></h2>
             </div>
             <ButtonLink href="/proyectos" variant="ghost-dark">{(await getTranslations('common'))('viewAll')} ({projects.length})</ButtonLink>
           </div>
           <div className="mt-16 grid gap-x-6 gap-y-14 sm:grid-cols-2 lg:grid-cols-12">
             {featured.map((p, i) => (
-              <div key={p.slug} className={i === 0 ? 'sm:col-span-2 lg:col-span-7' : i === 1 ? 'lg:col-span-5 lg:mt-24' : 'lg:col-span-4'}>
+              <div key={p.slug} data-speed={i % 2 ? '0.7' : '0.25'} className={i === 0 ? 'sm:col-span-2 lg:col-span-7' : i === 1 ? 'lg:col-span-5 lg:mt-24' : 'lg:col-span-4'}>
                 <ProjectCard p={p} locale={locale} index={i} size={i === 0 ? 'lg' : 'md'} />
               </div>
             ))}
@@ -119,7 +137,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
             <SectionNode code="PROTOS" />
             <div className="lg:col-span-5">
               <Eyebrow>{t('factoryEyebrow')}</Eyebrow>
-              <h2 id="factory" data-reveal className="mt-6 text-3xl uppercase">{t('factoryTitle')}</h2>
+              <h2 id="factory" data-reveal aria-label={t('factoryTitle')} className="split mt-6 text-3xl uppercase"><SplitWords text={t('factoryTitle')} /></h2>
               <p data-reveal className="mt-8 text-lg text-steel-600">{t('factoryLead')}</p>
               <ul className="mono mt-8 space-y-2 text-steel-600">
                 <li className="flex gap-3"><span className="text-signal-ink">—</span>ISO 9001:2015 · TÜV Rheinland ID 9000029079</li>
@@ -131,12 +149,14 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
             <ul className="grid grid-cols-2 gap-3 lg:col-span-6 lg:col-start-7">
               {productShots.map((p, i) => (
                 <li key={p.slug} className={i % 2 === 1 ? 'translate-y-10' : ''}>
+                  <div data-speed={i % 2 ? '0.9' : '0.3'}>
                   <Link href={`/productos/${p.slug}`} className="group block">
                     <div data-reveal-img style={{ ['--d' as string]: `${i * 90}ms` }} className="relative aspect-square overflow-hidden bg-paper">
                       <Image src={p.img.src} alt={tr(p.img.alt, locale)} fill sizes="(min-width: 1024px) 25vw, 50vw" className="object-contain p-4 transition-transform duration-700 ease-out group-hover:scale-105" />
                     </div>
                     <p className="mono mt-3 text-steel-600 group-hover:text-signal-ink">{p.title}</p>
                   </Link>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -150,16 +170,31 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
           <div className="relative">
             <SectionNode code="IND" dark />
             <Eyebrow dark>{t('industriesEyebrow')}</Eyebrow>
-            <h2 id="industries" data-reveal className="mt-6 max-w-3xl text-3xl uppercase">{t('industriesTitle')}</h2>
+            <h2 id="industries" data-reveal aria-label={t('industriesTitle')} className="split mt-6 max-w-3xl text-3xl uppercase"><SplitWords text={t('industriesTitle')} /></h2>
           </div>
-          <ol className="mt-14 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
-            {industries.map((ind, i) => (
-              <li key={ind.slug} data-reveal style={{ ['--d' as string]: `${(i % 3) * 60}ms` }} className="flex items-baseline gap-4 border-b border-white/10 py-5">
-                <span className="mono text-signal-bright">{String(i + 1).padStart(2, '0')}</span>
-                <span className="display text-2xl uppercase">{tr(ind.name, locale)}</span>
-              </li>
+        </div>
+        {/* Two rows of industries that slide in opposite directions as the section scrolls by */}
+        <div className="mt-14 space-y-4 overflow-hidden border-y border-white/10 py-8 lg:mt-20 lg:py-12">
+          <div data-scrub-x="-50" className="flex w-max">
+            {[0, 1].map((copy) => (
+              <ul key={copy} aria-hidden={copy === 1 || undefined} className="flex shrink-0">
+                {industries.map((ind, i) => (
+                  <li key={ind.slug} className="display flex items-center whitespace-nowrap pr-10 text-4xl uppercase lg:pr-16">
+                    <span className="mono mr-4 text-signal-bright">{String(i + 1).padStart(2, '0')}</span>{tr(ind.name, locale)}
+                  </li>
+                ))}
+              </ul>
             ))}
-          </ol>
+          </div>
+          <div aria-hidden data-scrub-x="50" className="flex w-max">
+            {[0, 1].map((copy) => (
+              <div key={copy} className="flex shrink-0">
+                {[...industries].reverse().map((ind) => (
+                  <span key={ind.slug} className="display outline-text whitespace-nowrap pr-10 text-4xl uppercase lg:pr-16">{tr(ind.name, locale)}</span>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -169,11 +204,13 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
           <div className="relative grid gap-12 lg:grid-cols-12 lg:items-center">
             <SectionNode code="LAB" />
             <div data-reveal-img className="relative aspect-[4/5] overflow-hidden bg-ink lg:col-span-5">
-              <Image src={services.find((x) => x.slug === 'instrumentacion')!.image!.src} alt={tr(services.find((x) => x.slug === 'instrumentacion')!.image!.alt, locale)} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
+              <div data-parallax="8" className="parallax-media">
+                <Image src={services.find((x) => x.slug === 'instrumentacion')!.image!.src} alt={tr(services.find((x) => x.slug === 'instrumentacion')!.image!.alt, locale)} fill sizes="(min-width: 1024px) 40vw, 100vw" className="object-cover" />
+              </div>
             </div>
             <div className="lg:col-span-6 lg:col-start-7">
               <Eyebrow code="E+H">{t('labEyebrow')}</Eyebrow>
-              <h2 id="lab" data-reveal className="mt-6 text-3xl uppercase">{t('labTitle')}</h2>
+              <h2 id="lab" data-reveal aria-label={t('labTitle')} className="split mt-6 text-3xl uppercase"><SplitWords text={t('labTitle')} /></h2>
               <p data-reveal className="mt-8 text-lg text-steel-600">{tr(services.find((x) => x.slug === 'instrumentacion')!.summary, locale)}</p>
               <ButtonLink href={{ pathname: '/contacto', query: { tema: 'calibration' } }} className="mt-10">{t('labCta')}</ButtonLink>
             </div>
@@ -188,7 +225,7 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
             <SectionNode code="BRD" />
             <div>
               <Eyebrow>{t('brandsEyebrow')}</Eyebrow>
-              <h2 id="brands" data-reveal className="mt-6 max-w-3xl text-3xl uppercase">{t('brandsTitle')}</h2>
+              <h2 id="brands" data-reveal aria-label={t('brandsTitle')} className="split mt-6 max-w-3xl text-3xl uppercase"><SplitWords text={t('brandsTitle')} /></h2>
             </div>
             <ButtonLink href="/marcas" variant="ghost-light">{(await getTranslations('nav'))('brands')}</ButtonLink>
           </div>
@@ -204,13 +241,14 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
       </section>
 
       {/* Offices */}
-      <section aria-labelledby="offices" className="on-dark bg-ink py-24 text-white lg:py-32">
+      <section aria-labelledby="offices" className="on-dark relative isolate overflow-hidden bg-ink py-24 text-white lg:py-32">
+        <p aria-hidden data-scrub-x="-30" className="display outline-text pointer-events-none absolute bottom-6 left-0 -z-10 whitespace-nowrap text-[22vw] uppercase leading-none opacity-40">ISOTEK LATAM · ISOTEK LATAM</p>
         <div className="container-x">
           <div className="relative grid gap-12 lg:grid-cols-12">
             <SectionNode code="NET" dark />
             <div className="lg:col-span-5">
               <Eyebrow dark>{t('officesEyebrow')}</Eyebrow>
-              <h2 id="offices" data-reveal className="mt-6 text-3xl uppercase">{t('officesTitle')}</h2>
+              <h2 id="offices" data-reveal aria-label={t('officesTitle')} className="split mt-6 text-3xl uppercase"><SplitWords text={t('officesTitle')} /></h2>
             </div>
             <ul className="lg:col-span-6 lg:col-start-7">
               {s.offices.map((o, i) => (

@@ -3,11 +3,13 @@ import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { routing } from '@/i18n/routing';
-import { archivo, jetbrains, source } from '../fonts';
+import { manrope, marcellus } from '../fonts';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { RevealObserver } from '@/components/motion/RevealObserver';
 import { Busbar } from '@/components/motion/Busbar';
+import { SmoothScroll } from '@/components/motion/SmoothScroll';
+import { ScrollFx } from '@/components/motion/ScrollFx';
 import { WhatsAppFab } from '@/components/ui/WhatsAppFab';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { Analytics } from '@/components/seo/Analytics';
@@ -16,7 +18,7 @@ import { SITE_URL, tr } from '@/lib/site';
 import type { Locale } from '@/content/types';
 import '../globals.css';
 
-export const viewport: Viewport = { themeColor: '#0e0f11', width: 'device-width', initialScale: 1 };
+export const viewport: Viewport = { themeColor: '#15110f', width: 'device-width', initialScale: 1 };
 
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
@@ -64,7 +66,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   };
 
   return (
-    <html lang={locale} className={`${archivo.variable} ${source.variable} ${jetbrains.variable}`} suppressHydrationWarning>
+    <html lang={locale} className={`${marcellus.variable} ${manrope.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: bootScript }} />
       </head>
@@ -81,6 +83,8 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           <Footer settings={s} locale={locale as Locale} />
           <WhatsAppFab number={s.whatsapp} label={(await getTranslations('common'))('whatsapp')} />
           <RevealObserver />
+          <SmoothScroll />
+          <ScrollFx />
         </NextIntlClientProvider>
         <JsonLd data={org} />
         <Analytics />

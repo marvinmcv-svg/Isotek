@@ -34,7 +34,7 @@ export const settings: SiteSettings = {
   ),
   phone: '+591 3 3112470',
   email: 'info@isoteklatam.com',
-  whatsapp: '59169224248',
+  whatsapp: '59177165787',
   address: { street: 'Barrio 23 de Junio, Avenida San Juan, entre calles 4 y 5', city: 'Santa Cruz de la Sierra', country: 'Bolivia' },
   hours: t('Lunes a viernes, 8:00 – 17:30', 'Monday to Friday, 8:00 am – 5:30 pm'),
   storeUrl: 'https://nfjd3h-uk.myshopify.com/',
