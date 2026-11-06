@@ -52,15 +52,7 @@
     "eyebrow": "Industrial EPC · Bolivia · LATAM",
     "title1": "One",
     "title2": "supplier.",
-    "lead": "From engineering to commissioning. We design, manufacture in Bolivia, install and maintain the electrical and control systems of industrial plants across the region.",
-    "feeders": [
-      "Engineering",
-      "Procurement",
-      "Fabrication",
-      "Commissioning"
-    ],
     "ctaPrimary": "Request a consultation",
-    "ctaProjects": "See projects",
     "proofTitle": "Measurable backing",
     "servicesEyebrow": "Solutions and services",
     "servicesTitle": "Eight service lines. One point of responsibility.",
@@ -81,7 +73,38 @@
     "officesEyebrow": "Presence",
     "officesTitle": "Headquartered in Bolivia. Local teams across the region.",
     "ctaTitle": "Have a project in mind?",
-    "ctaLead": "Tell us what you need. An engineer will assess your project and reply with a tailored proposal."
+    "ctaLead": "Tell us what you need. An engineer will assess your project and reply with a tailored proposal.",
+    "ctaService": "View service",
+    "heroSlides": {
+      "ccm": {
+        "tab": "Motor Control Centres",
+        "kicker": "IEC 61439-1/5 · CUBIC and PROTOS"
+      },
+      "epc": {
+        "tab": "Turnkey EPC",
+        "kicker": "Engineering · Procurement · Construction"
+      },
+      "electricas-bt-mt": {
+        "tab": "Low & medium voltage",
+        "kicker": "Siemens · Schneider · Rockwell · ABB"
+      },
+      "instrumentacion": {
+        "tab": "Instrumentation & calibration",
+        "kicker": "Endress+Hauser-certified laboratory"
+      },
+      "metalmecanica": {
+        "tab": "Metal fabrication",
+        "kicker": "CNC lines · ISO 9001:2015"
+      }
+    },
+    "heroLabels": {
+      "carousel": "Key services",
+      "slide": "slide",
+      "prev": "Previous service",
+      "next": "Next service",
+      "pause": "Pause",
+      "play": "Play"
+    }
   },
   "solutions": {
     "metaTitle": "Solutions and services — EPC, switchboards, MCCs, instrumentation | ISOTEK LATAM",

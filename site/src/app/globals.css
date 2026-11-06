@@ -142,31 +142,55 @@ html.js [data-reveal-img].is-in { clip-path: inset(0 0 0 0); }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
 
-/* ── Hero "Energizar" sequence (CSS only; renders final state if reduced motion) ── */
-@keyframes bus-draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-@keyframes feeder-drop { from { transform: scaleY(0); } to { transform: scaleY(1); } }
-@keyframes node-live {
-  0% { background: var(--color-ink); border-color: var(--color-steel-400); box-shadow: 0 0 0 0 rgb(216 38 31 / 0); }
-  60% { box-shadow: 0 0 0 10px rgb(228 30 24 / 0.25); }
-  100% { background: var(--color-signal); border-color: var(--color-signal); box-shadow: 0 0 0 5px rgb(228 30 24 / 0.18); }
-}
-@keyframes pulse-run { from { left: 0; opacity: 1; } 90% { opacity: 1; } to { left: 100%; opacity: 0; } }
-@keyframes rise { from { transform: translateY(30%); } to { transform: none; } }
+/* ── Hero carousel (HeroCarousel.tsx + EnergyField.tsx) ─────────────────── */
 @keyframes fade-up { from { transform: translateY(12px); opacity: 0; } to { transform: none; opacity: 1; } }
-@keyframes photo-on { from { opacity: 0.18; transform: scale(1.06); } to { opacity: 0.5; transform: scale(1); } }
+@keyframes slide-in { from { transform: translateY(18px); opacity: 0; filter: blur(6px); } to { transform: none; opacity: 1; filter: none; } }
+@keyframes word-rise { from { transform: translateY(110%) rotate(4deg); } to { transform: none; } }
+@keyframes img-wipe {
+  from { clip-path: inset(0 0 0 100%); }
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes img-settle { from { transform: scale(1.25); } to { transform: scale(1.08); } }
+@keyframes kenburns { from { transform: scale(1.08) translate(0, 0); } to { transform: scale(1.18) translate(-2%, -1.5%); } }
+@keyframes progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes field-on { from { opacity: 0; } to { opacity: 1; } }
 
-.hero-bus { transform-origin: left; animation: bus-draw 900ms var(--ease-in-out) 150ms both; }
-.hero-feeder { transform-origin: top; animation: feeder-drop 420ms var(--ease-in-out) both; animation-delay: calc(800ms + var(--i) * 140ms); }
-.hero-node { animation: node-live 500ms var(--ease-snap) both; animation-delay: calc(1250ms + var(--i) * 140ms); }
-.hero-label { animation: fade-up 600ms var(--ease-out) both; animation-delay: calc(1150ms + var(--i) * 140ms); }
-.hero-pulse { animation: pulse-run 1100ms var(--ease-in-out) 1100ms both; }
-.hero-line { display: block; animation: rise 800ms var(--ease-out) both; animation-delay: calc(200ms + var(--i) * 90ms); }
 .hero-fade { animation: fade-up 700ms var(--ease-out) both; animation-delay: var(--d, 600ms); }
-.hero-photo { animation: photo-on 1800ms var(--ease-out) 300ms both; }
+.slide-in { animation: slide-in 800ms var(--ease-out) both; animation-delay: var(--d, 0ms); }
+.word-rise { animation: word-rise 900ms var(--ease-out) both; animation-delay: calc(120ms + var(--i) * 55ms); }
+.text-slide {
+  font-size: clamp(2.2rem, 4.3vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: 0.01em;
+}
+
+.energy-field { animation: field-on 2s var(--ease-out) both; }
+
+/* Image card: perspective tilt follows the pointer (--mx/--my set in JS) */
+.hero-card-wrap { perspective: 1400px; }
+.hero-card {
+  transform: rotateY(calc(var(--mx, 0) * 7deg)) rotateX(calc(var(--my, 0) * -6deg));
+  transition: transform 600ms var(--ease-out);
+  will-change: transform;
+}
+.hero-slide-img { visibility: hidden; z-index: 0; }
+.hero-slide-img.is-prev { visibility: visible; z-index: 1; }
+.hero-slide-img.is-active { visibility: visible; z-index: 2; animation: img-wipe 1100ms var(--ease-in-out) both; }
+.hero-slide-img.is-active .kenburns { animation: img-settle 1400ms var(--ease-out) both, kenburns 9s 1400ms linear both alternate infinite; }
+.hero-slide-img.is-prev .kenburns { transform: scale(1.1); filter: brightness(0.5); transition: filter 900ms; }
+.hero-progress { transform: scaleX(0); animation-name: progress; animation-timing-function: linear; animation-fill-mode: both; }
+
+.hero-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-bus, .hero-feeder, .hero-node, .hero-label, .hero-line, .hero-fade, .hero-photo { animation: none !important; }
-  .hero-node { background: var(--color-signal); border-color: var(--color-signal); }
-  .hero-photo { opacity: 0.5; }
-  .hero-pulse { display: none; }
+  .hero-fade, .slide-in, .word-rise, .hero-slide-img.is-active, .hero-slide-img.is-active .kenburns, .energy-field { animation: none !important; }
+  .hero-card { transform: none; }
 }
+
+/* Lenis (SmoothScroll.tsx) */
+html.lenis, html.lenis body { height: auto; }
+.lenis:not(.lenis-autoToggle).lenis-stopped { overflow: clip; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }

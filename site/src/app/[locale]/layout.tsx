@@ -8,6 +8,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { RevealObserver } from '@/components/motion/RevealObserver';
 import { Busbar } from '@/components/motion/Busbar';
+import { SmoothScroll } from '@/components/motion/SmoothScroll';
 import { WhatsAppFab } from '@/components/ui/WhatsAppFab';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { Analytics } from '@/components/seo/Analytics';
@@ -81,6 +82,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           <Footer settings={s} locale={locale as Locale} />
           <WhatsAppFab number={s.whatsapp} label={(await getTranslations('common'))('whatsapp')} />
           <RevealObserver />
+          <SmoothScroll />
         </NextIntlClientProvider>
         <JsonLd data={org} />
         <Analytics />

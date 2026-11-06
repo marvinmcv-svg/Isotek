@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
-import { HeroEnergize } from '@/components/home/HeroEnergize';
+import { HeroCarousel, type HeroSlide } from '@/components/home/HeroCarousel';
 import { ButtonLink } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { SectionNode } from '@/components/ui/SectionNode';
@@ -26,7 +26,24 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
     getTranslations('home'), getSettings(), getServices(), getProjects(), getIndustries(), getBrands(), getProducts(),
   ]);
   const featured = projects.filter((p) => p.featured).slice(0, 5);
-  const hero = projects.find((p) => p.slug === 'centro-de-control-de-motores-inteligente')!.images[0];
+  // Key services for the hero carousel, each paired with its strongest project photo
+  const heroPhotos: Record<string, string> = {
+    ccm: '/media/projects/alicorp-1.jpg',
+    epc: '/media/projects/alcoenergy-1.jpg',
+    'electricas-bt-mt': '/media/projects/cbn-busbar-1.jpg',
+    instrumentacion: '/media/projects/alcogreen-1.jpg',
+    metalmecanica: '/media/projects/soboce-2.jpg',
+  };
+  const allImages = projects.flatMap((p) => p.images);
+  const heroSlides: HeroSlide[] = Object.entries(heroPhotos).map(([slug, src]) => {
+    const sv = services.find((x) => x.slug === slug)!;
+    const img = allImages.find((i) => i.src === src)!;
+    return {
+      slug, code: sv.code, title: tr(sv.title, locale), summary: tr(sv.summary, locale),
+      tab: t(`heroSlides.${slug}.tab`), kicker: t(`heroSlides.${slug}.kicker`),
+      image: { src: img.src, alt: tr(img.alt, locale) },
+    };
+  });
   const productShots = ['porta-barras', 'barras-de-cobre', 'tableros-autoportantes', 'aisladores-electricos']
     .map((slug) => products.find((p) => p.slug === slug))
     .filter(Boolean)
@@ -34,10 +51,10 @@ export default async function Home({ params }: { params: Promise<{ locale: Local
 
   return (
     <>
-      <HeroEnergize
-        eyebrow={t('eyebrow')} title1={t('title1')} title2={t('title2')} lead={t('lead')}
-        feeders={t.raw('feeders') as string[]} ctaPrimary={t('ctaPrimary')} ctaProjects={t('ctaProjects')}
-        image={hero} imageAlt={tr(hero.alt, locale)}
+      <HeroCarousel
+        eyebrow={t('eyebrow')} title1={t('title1')} title2={t('title2')} slides={heroSlides}
+        ctaService={t('ctaService')} ctaPrimary={t('ctaPrimary')}
+        labels={t.raw('heroLabels') as { carousel: string; slide: string; prev: string; next: string; pause: string; play: string }}
       />
 
       {/* Proof strip */}
